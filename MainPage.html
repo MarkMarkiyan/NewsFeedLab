@@ -1,0 +1,112 @@
+<html>
+<head>
+<script lang="JavaScript">
+    var sortType = 0;
+    var elemets = [];
+    var elementsCount = 0;
+
+    function BubbleSort(){
+        document.getElementById("sortTypeId").textContent = "Сортування бульбашкою.";
+    }
+
+    function MaxElementSort(){
+        document.getElementById("sortTypeId").textContent = "Метод знаходження найбільшого елемента.";
+    }
+
+    function RandomSort(){
+        document.getElementById("sortTypeId").textContent = "Метод випадкового сортування.";
+    }
+
+    function AddElement(){
+        document.getElementById("elementsList").innerHTML+= "<li><input id=\"item"+ elementsCount +"\"/></li>";
+        elementsCount++;
+    }
+
+    function SortClick(){
+        var notSortedList = [];
+        for(var i=0; i<elementsCount; i++)
+        {
+            var element = document.getElementById("item"+i).value;
+            notSortedList.push(element);
+        }
+        var sortedList = MaxElementSortFunc(notSortedList);
+
+        document.getElementById("resultElementsList").innerHTML = "<ul id=\"resultElementsList\"></ul>"
+        for(var i=0; i<elementsCount; i++)
+        {
+           document.getElementById("resultElementsList").innerHTML+= "<li><label style=\"color:white\">"+sortedList[i]+"</label></li>";           
+        }
+    }
+
+    function MaxElementSortFunc(elements){
+        var sortedList = [];
+        for(var i = 0; i < elements.length; i++)
+        {
+            var maxEl = 0;
+            var maxElIndex = 0;
+            for(var j = 0; j < elements.length; j++)
+            {
+                if(parseInt(elements[j]) > parseInt( maxEl))
+                {
+                    maxEl = elements[j];
+                    maxElIndex = j;
+                }
+            }
+            sortedList[i] = maxEl;
+            elements[maxElIndex] = -1;
+        }
+        return sortedList;
+    }
+
+    function GetSquare () {
+        var numb1 = document.getElementById("numb1").value;
+        var numb2 = numb1*numb1;
+        var numb2El = document.getElementById("numb2");
+        numb2El.value = numb2;
+    }
+
+    function FindText () {
+        var text = document.getElementById("bigText").value;
+        var exp = document.getElementById("smallText").value;
+        var count = text.split(`${exp}`).length - 1;
+        var result = document.getElementById("resultCount");
+        result.value = count;
+        }
+</script>
+<link rel="stylesheet" type="text/css" href="Style.css">
+</head>
+
+<body background="Casa_Wallpaper.jpg">
+<label style="color: white">Сортування</label>
+    <table>   
+        <tr>
+            <td><a class="tableButton" id="confirmMessage" onclick="BubbleSort()" item-width="10">Бульбашкове сортування</a></td>
+            <td><a class="tableButton" id="confirmMessage" onclick="MaxElementSort()" item-width="10">Методо знаходження найбільшого елемента</a></td>
+            <td><a class="tableButton" id="confirmMessage" onclick="RandomSort()" item-width="10">Випадковим підбором</a></td>
+        </tr>
+        <tr>
+            <td><label style="color: white">Тип сортування: </label></td>
+            <td><label style="color: white" id="sortTypeId">Тип сортування</label></td>
+            <td></td>
+        </tr>
+    </table>
+    <ul id="elementsList">
+    </ul>
+    <a class="tableButton" onclick="AddElement()">Додати елемент</a>
+    <a class="tableButton" onclick="SortClick()">Посортувати</a>
+    <ul id="resultElementsList">
+    </ul>
+</body>
+<div>
+    <input name="text" id="numb1" value="" placeholder="Number" type="text">
+    <input name="text" id="getSquare" value="Отримати значення в квадраті" type="submit" onclick="GetSquare()">
+    <input name="text" id="numb2" value="" placeholder="Number in square" type="text">    
+</div>
+
+<div>
+    <input name="text" id="bigText" value="" type="text">
+    <input name="text" id="smallText" value="" type="text">
+    <input name="text" id="findText" value="К-сть входження тексту" type="submit" onclick="FindText()">
+    <input name="text" id="resultCount" value="" type="text">    
+    </div>
+</html>

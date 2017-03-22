@@ -1,0 +1,53 @@
+<html>
+<head>
+<script lang="JavaScript">
+var isValid = true;
+
+    function checkPass()
+{
+    var pass1 = document.getElementById('pass1');
+    var pass2 = document.getElementById('pass2');
+    var message = document.getElementById('confirmMessage');
+    var goodColor = "#66cc66";
+    var badColor = "#ff6666";
+    if(pass1.value == pass2.value){
+        isValid = true;
+        pass2.style.backgroundColor = goodColor;
+        message.style.color = goodColor;
+        message.innerHTML = "Passwords Match!"
+    }else{
+        isValid = false;        
+        pass2.style.backgroundColor = badColor;
+        message.style.color = badColor;
+        message.innerHTML = "Passwords Do Not Match!"
+    }
+}  
+
+function Register(){
+window.location.href = "MainPage.html";
+}
+    </script>
+<link rel="stylesheet" type="text/css" href="Style.css">
+</head>
+
+<body background="Casa_Wallpaper.jpg">
+    <table item-width="100%">
+    <tr>
+        <td item-width="50%"><label class="label ">Name: </label></td>
+        <td item-width="50%"><input></input></td>
+    </tr>
+    <tr>
+        <td>Password: </td>
+        <td><input type="password" id="pass1"></input></td>
+    </tr>
+    <tr>
+        <td>Repeat Password: </td>
+        <td><input type="password" id="pass2" onkeyup="checkPass()"></input></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><a class="button" id="confirmMessage" onclick="Register()">Ok</a></td>
+    </tr>
+</table>
+</body>
+</html>
